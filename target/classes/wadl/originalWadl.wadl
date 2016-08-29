@@ -1,0 +1,554 @@
+<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:xs="http://www.w3.org/2001/XMLSchema"><grammars><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="com.edicom.ediwin" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="com.edicom.ediwin">
+<xs:import/>
+<xs:element name="complementFunction" type="iedmComplementFunction"/>
+<xs:element name="dataaux" type="iedmDataAux"/>
+<xs:element name="document" type="iedmDocument"/>
+<xs:element name="ediwinResult" type="iEdiwinResult"/>
+<xs:element name="fblob" type="iedmBlob"/>
+<xs:element name="filter" type="iedmFilter"/>
+<xs:element name="filterop" type="iedmFilterCriteria"/>
+<xs:element name="folder" type="iedmFolder"/>
+<xs:element name="metafield" type="iedmMetaField"/>
+<xs:element name="param" type="iedmCriteria"/>
+<xs:element name="sessionUserInfo" type="iedmSessionUserInfo"/>
+<xs:element name="userEdiwin" type="iedmUser"/>
+<xs:element name="userSecurity" type="iedmUserSecurity"/>
+<xs:element name="userSecurityOption" type="iedmUserSecurityOption"/>
+<xs:element name="userSecurityOptionEnabled" type="iedmUserSecurityOptionEnabled"/>
+<xs:element name="userSecurityOptionValue" type="iedmUserSecurityOptionValue"/>
+<xs:element name="documents">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" ref="document"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="ediwinResults">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" ref="ediwinResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="folders">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" ref="folder"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="com.edicom.ediwin" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="com.edicom.ediwin">
+<xs:import namespace="com.edicom.ediwin"/>
+<xs:element name="securityToken" type="iedmSecurityToken"/>
+<xs:complexType name="iedmComplementFunction">
+<xs:sequence>
+<xs:element minOccurs="0" name="complement" type="xs:string"/>
+<xs:element minOccurs="0" name="function" type="xs:string"/>
+<xs:element name="inputData">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="key" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="xs:base64Binary"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="params">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="key" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="iedmDocument">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="attachment" nillable="true" type="iedmMetaField"/>
+<xs:element minOccurs="0" name="autack" type="xs:string"/>
+<xs:element minOccurs="0" name="blob" type="iedmBlob"/>
+<xs:element minOccurs="0" name="changeState" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="ciphered" type="xs:string"/>
+<xs:element minOccurs="0" name="crypto" type="xs:string"/>
+<xs:element minOccurs="0" name="date" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="deleted" type="xs:string"/>
+<xs:element minOccurs="0" name="destination" type="xs:string"/>
+<xs:element minOccurs="0" name="domain" type="xs:string"/>
+<xs:element minOccurs="0" name="envDestination" type="xs:string"/>
+<xs:element minOccurs="0" name="envSource" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="iedmDataAux"/>
+<xs:element minOccurs="0" name="flags" type="xs:int"/>
+<xs:element minOccurs="0" name="format" type="xs:string"/>
+<xs:element minOccurs="0" name="guide" type="xs:string"/>
+<xs:element minOccurs="0" name="hashDoc" type="xs:string"/>
+<xs:element minOccurs="0" name="id" type="xs:int"/>
+<xs:element minOccurs="0" name="idAck" type="xs:int"/>
+<xs:element minOccurs="0" name="idExternal" type="xs:string"/>
+<xs:element minOccurs="0" name="idInt" type="xs:int"/>
+<xs:element minOccurs="0" name="ieen" type="xs:string"/>
+<xs:element minOccurs="0" name="iepe" type="xs:string"/>
+<xs:element minOccurs="0" name="iere" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="info" nillable="true" type="iedmDataAux"/>
+<xs:element minOccurs="0" name="length" type="xs:int"/>
+<xs:element minOccurs="0" name="mark" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="metadata" nillable="true" type="iedmMetaField"/>
+<xs:element name="profile">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="key" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="reference" type="xs:string"/>
+<xs:element minOccurs="0" name="schema" type="xs:string"/>
+<xs:element minOccurs="0" name="selection" type="xs:int"/>
+<xs:element minOccurs="0" name="signed" type="xs:string"/>
+<xs:element minOccurs="0" name="situation" type="xs:string"/>
+<xs:element minOccurs="0" name="source" type="xs:string"/>
+<xs:element minOccurs="0" name="state" type="xs:string"/>
+<xs:element minOccurs="0" name="type" type="xs:string"/>
+<xs:element name="xdoc">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="key" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="iedmXdocField"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="iedmMetaField">
+<xs:sequence>
+<xs:element minOccurs="0" name="calif" type="tAuxCalif"/>
+<xs:element minOccurs="0" name="contentType" type="xs:string"/>
+<xs:element minOccurs="0" name="data" type="xs:base64Binary"/>
+<xs:element minOccurs="0" name="filename" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="iedmBlob">
+<xs:sequence>
+<xs:element minOccurs="0" name="context" type="xs:string"/>
+<xs:element minOccurs="0" name="data" type="xs:base64Binary"/>
+<xs:element minOccurs="0" name="date" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="encoding" type="xs:string"/>
+<xs:element minOccurs="0" name="id" type="xs:integer"/>
+<xs:element minOccurs="0" name="type" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="iedmDataAux">
+<xs:sequence>
+<xs:element minOccurs="0" name="calif" type="tAuxCalif"/>
+<xs:element minOccurs="0" name="clase" type="tAuxClass"/>
+<xs:element minOccurs="0" name="context" type="xs:string"/>
+<xs:element minOccurs="0" name="date" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="tipo" type="tAuxType"/>
+<xs:element minOccurs="0" name="value" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="iedmXdocField">
+<xs:sequence>
+<xs:element minOccurs="0" name="data" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="iedmFolder">
+<xs:sequence>
+<xs:element minOccurs="0" name="activo" type="xs:boolean"/>
+<xs:element minOccurs="0" name="cod" type="xs:int"/>
+<xs:element minOccurs="0" name="container" type="xs:boolean"/>
+<xs:element minOccurs="0" name="description" type="xs:string"/>
+<xs:element minOccurs="0" name="electronic" type="xs:boolean"/>
+<xs:element minOccurs="0" name="filter" type="iedmFilter"/>
+<xs:element minOccurs="0" name="group" type="xs:string"/>
+<xs:element minOccurs="0" name="idVol" type="xs:int"/>
+<xs:element minOccurs="0" name="order" type="xs:string"/>
+<xs:element minOccurs="0" name="parentFolder" type="xs:int"/>
+<xs:element minOccurs="0" name="position" type="xs:int"/>
+<xs:element minOccurs="0" name="temp" type="xs:boolean"/>
+<xs:element minOccurs="0" name="type" type="xs:int"/>
+<xs:element minOccurs="0" name="user" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="iedmFilter">
+<xs:sequence>
+<xs:element minOccurs="0" name="filterCriteria" type="iedmFilterCriteria"/>
+<xs:element minOccurs="0" name="groupBy" type="xs:string"/>
+<xs:element minOccurs="0" name="orderBy" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="iedmFilterCriteria">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="children" nillable="true" type="iedmFilterCriteria"/>
+<xs:element minOccurs="0" name="criteria" type="iedmCriteria"/>
+<xs:element minOccurs="0" name="union" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="iedmCriteria">
+<xs:sequence>
+<xs:element minOccurs="0" name="op" type="xs:string"/>
+<xs:element minOccurs="0" name="v1" type="xs:string"/>
+<xs:element minOccurs="0" name="v2" type="xs:anyType"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="iEdiwinResult">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="docs" nillable="true" type="iedmDocument"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="info" nillable="true" type="xs:string"/>
+<xs:element name="outputData">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="key" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="xs:base64Binary"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="result" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="iedmUser">
+<xs:sequence>
+<xs:element minOccurs="0" name="certificate" type="xs:string"/>
+<xs:element minOccurs="0" name="changePwdAllowed" type="xs:boolean"/>
+<xs:element minOccurs="0" name="changePwdExpirationDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="changePwdOnLogin" type="xs:boolean"/>
+<xs:element minOccurs="0" name="description" type="xs:string"/>
+<xs:element minOccurs="0" name="ebiPwd" type="xs:string"/>
+<xs:element minOccurs="0" name="ebiUser" type="xs:string"/>
+<xs:element minOccurs="0" name="email" type="xs:string"/>
+<xs:element minOccurs="0" name="enabled" type="xs:boolean"/>
+<xs:element minOccurs="0" name="filter" type="xs:string"/>
+<xs:element minOccurs="0" name="forgottenPwdAnswer" type="xs:string"/>
+<xs:element minOccurs="0" name="forgottenPwdQuest" type="xs:string"/>
+<xs:element minOccurs="0" name="fullName" type="xs:string"/>
+<xs:element minOccurs="0" name="groupedPrint" type="xs:int"/>
+<xs:element minOccurs="0" name="id" type="xs:long"/>
+<xs:element minOccurs="0" name="language" type="xs:string"/>
+<xs:element minOccurs="0" name="preview" type="xs:string"/>
+<xs:element minOccurs="0" name="reportLanguage" type="xs:string"/>
+<xs:element minOccurs="0" name="rol" type="xs:string"/>
+<xs:element minOccurs="0" name="services" type="xs:string"/>
+<xs:element minOccurs="0" name="timezone" type="xs:string"/>
+<xs:element minOccurs="0" name="userId" type="xs:string"/>
+<xs:element minOccurs="0" name="userPwd" type="xs:string"/>
+<xs:element minOccurs="0" name="userSecurity" type="iedmUserSecurity"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="iedmUserSecurity">
+<xs:sequence>
+<xs:element minOccurs="0" name="userSecurityFunctions">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="userSecurityFunctions" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="userSecuritySchemas">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="userSecuritySchemas" type="iedmUserSecurityOption"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="userSecurityInternalPartners">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="userSecurityInternalPartners" type="iedmUserSecurityOption"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="userSecurityExternalPartners">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="userSecurityExternalPartners" type="iedmUserSecurityOption"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="userSecurityEdicomData">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="userSecurityEdicomData" type="iedmUserSecurityOption"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="userSecurityHierarchy">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="userSecurityHierarchy" type="iedmUserSecurityOption"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="userSecurityVolumes">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="userSecurityVolumes" type="iedmUserSecurityOption"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="userSecurityFolders">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="userSecurityFolders" type="iedmUserSecurityOption"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="userSecurityEquivList">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="userSecurityEquivList" type="iedmUserSecurityOptionEnabled"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="userSecurityRemoteEquivLists">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="userSecurityRemoteEquivLists" type="iedmUserSecurityOptionEnabled"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="userSecurityUsers">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="userSecurityUsers" type="iedmUserSecurityOption"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="userSecurityWebOptions">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="userSecurityWebOptions" type="iedmUserSecurityOptionValue"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="userSecurityAdvancedSecurity">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="userSecurityAdvancedSecurity" type="iedmUserSecurityOptionValue"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="iedmUserSecurityOption">
+<xs:sequence>
+<xs:element minOccurs="0" name="option" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="iedmUserSecurityOptionEnabled">
+<xs:sequence>
+<xs:element minOccurs="0" name="enabled" type="xs:int"/>
+<xs:element minOccurs="0" name="option" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="iedmUserSecurityOptionValue">
+<xs:sequence>
+<xs:element minOccurs="0" name="option" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="xs:string"/>
+<xs:element minOccurs="0" name="value2" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="iedmSessionUserInfo">
+<xs:sequence>
+<xs:element minOccurs="0" name="alias" type="xs:string"/>
+<xs:element minOccurs="0" name="changePwdAllowed" type="xs:boolean"/>
+<xs:element minOccurs="0" name="changePwdOnLogin" type="xs:boolean"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="columns" nillable="true" type="xs:string"/>
+<xs:element name="configUsuario">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="key" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="country" type="xs:string"/>
+<xs:element minOccurs="0" name="diasCadPwdRol" type="xs:int"/>
+<xs:element minOccurs="0" name="email" type="xs:string"/>
+<xs:element minOccurs="0" name="enabled" type="xs:boolean"/>
+<xs:element minOccurs="0" name="fullName" type="xs:string"/>
+<xs:element minOccurs="0" name="id" type="xs:int"/>
+<xs:element minOccurs="0" name="idRolUsr" type="xs:int"/>
+<xs:element minOccurs="0" name="language" type="xs:string"/>
+<xs:element minOccurs="0" name="lastAccess" type="xs:long"/>
+<xs:element minOccurs="0" name="lastUpdate" type="xs:long"/>
+<xs:element minOccurs="0" name="ldapUser" type="xs:boolean"/>
+<xs:element minOccurs="0" name="logonRetry" type="xs:int"/>
+<xs:element minOccurs="0" name="longMinPwdRol" type="xs:int"/>
+<xs:element minOccurs="0" name="maxIntBatch" type="xs:int"/>
+<xs:element minOccurs="0" name="maxIntInteractiva" type="xs:int"/>
+<xs:element minOccurs="0" name="maxRetry" type="xs:int"/>
+<xs:element name="maxTop" type="xs:int"/>
+<xs:element minOccurs="0" name="numCambiosPwdRol" type="xs:int"/>
+<xs:element minOccurs="0" name="strongPassword" type="xs:int"/>
+<xs:element minOccurs="0" name="timeLock" type="xs:int"/>
+<xs:element minOccurs="0" name="timezone" type="xs:string"/>
+<xs:element minOccurs="0" name="tipoPreview" type="xs:string"/>
+<xs:element minOccurs="0" name="userId" type="xs:string"/>
+<xs:element minOccurs="0" name="userPwd" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="userSchemas" nillable="true" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="userSecurityFunctions" nillable="true" type="xs:string"/>
+<xs:element name="userSecurityWebOptions">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="key" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="iedmSecurityToken">
+<xs:sequence>
+<xs:element minOccurs="0" name="domain" type="xs:string"/>
+<xs:element minOccurs="0" name="ediwinini" type="xs:string"/>
+<xs:element minOccurs="0" name="expirationDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="group" type="xs:string"/>
+<xs:element minOccurs="0" name="macRequired" type="xs:boolean"/>
+<xs:element minOccurs="0" name="password" type="xs:string"/>
+<xs:element minOccurs="0" name="singleUse" type="xs:boolean"/>
+<xs:element minOccurs="0" name="sourceip" type="xs:string"/>
+<xs:element minOccurs="0" name="token" type="xs:string"/>
+<xs:element minOccurs="0" name="type" type="xs:string"/>
+<xs:element minOccurs="0" name="user" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:simpleType name="tAuxCalif">
+<xs:restriction base="xs:string">
+<xs:enumeration value="ERROR"/>
+<xs:enumeration value="INFO"/>
+<xs:enumeration value="CONTROL"/>
+<xs:enumeration value="GESTOR"/>
+<xs:enumeration value="CRIPTO"/>
+<xs:enumeration value="IECTE"/>
+<xs:enumeration value="IERE"/>
+<xs:enumeration value="PROFILE"/>
+<xs:enumeration value="MOD"/>
+<xs:enumeration value="AUDIT"/>
+<xs:enumeration value="NOTA"/>
+<xs:enumeration value="MAP"/>
+<xs:enumeration value="TRO"/>
+<xs:enumeration value="REP"/>
+<xs:enumeration value="VAL"/>
+<xs:enumeration value="GDSN"/>
+<xs:enumeration value="DUP"/>
+<xs:enumeration value="INTEG"/>
+<xs:enumeration value="POS"/>
+<xs:enumeration value="ERRDOC"/>
+<xs:enumeration value="CRIPTO_INFODOC"/>
+<xs:enumeration value="CRIPTO_ERRDOC"/>
+<xs:enumeration value="INPROCCESS"/>
+<xs:enumeration value="ASINC"/>
+<xs:enumeration value="ASINC_NEW"/>
+<xs:enumeration value="ASINC_EXE"/>
+<xs:enumeration value="ASINC_END"/>
+<xs:enumeration value="ASINC_NUMBER"/>
+<xs:enumeration value="META_ATTACHMENT"/>
+<xs:enumeration value="META_FIC"/>
+<xs:enumeration value="META_LOG"/>
+<xs:enumeration value="META_ACC"/>
+<xs:enumeration value="META_TTC"/>
+<xs:enumeration value="META_RESVAL"/>
+<xs:enumeration value="META_VALIDADOR"/>
+<xs:enumeration value="META_CRIPTO_LOG"/>
+<xs:enumeration value="META_CRIPTO_SVUCEM"/>
+<xs:enumeration value="META_CRIPTO_SSII_ENV"/>
+<xs:enumeration value="META_CRIPTO_SNFSE"/>
+<xs:enumeration value="META_NFSE_ENVHOR"/>
+<xs:enumeration value="META_NFSE_ENVCUR"/>
+<xs:enumeration value="META_NFSE_LOTCAM"/>
+<xs:enumeration value="META_NFSE_RESPENV"/>
+<xs:enumeration value="META_DGI_ACKCFE"/>
+<xs:enumeration value="META_DGI_ENVCFE"/>
+<xs:enumeration value="META_DGI_ACKSOBRE"/>
+<xs:enumeration value="META_EMPRESAS_CFE"/>
+<xs:enumeration value="META_SUNAT_FIRMA"/>
+<xs:enumeration value="META_FUENTE_DTE"/>
+<xs:enumeration value="META_SRI_AUT"/>
+<xs:enumeration value="META_SGECO"/>
+<xs:enumeration value="META_SAFT"/>
+<xs:enumeration value="META_SOAP_REQUEST"/>
+<xs:enumeration value="META_SOAP_RESPONSE"/>
+<xs:enumeration value="META_SOAP_AMBOS"/>
+<xs:enumeration value="META_DOCTO"/>
+<xs:enumeration value="TRANSMITCODE"/>
+<xs:enumeration value="TRUSTEDORIGIN"/>
+<xs:enumeration value="EBIPUBINFO"/>
+<xs:enumeration value="EBIPUBID"/>
+<xs:enumeration value="REFGRUPO"/>
+<xs:enumeration value="OBSLIT"/>
+<xs:enumeration value="SIN_CODIGO"/>
+<xs:enumeration value="SIN_NUMAUT"/>
+<xs:enumeration value="RCANCELA"/>
+<xs:enumeration value="SHA1RSA"/>
+<xs:enumeration value="SAFT_TOSIGN"/>
+<xs:enumeration value="SAFT_RESPONSECWS"/>
+<xs:enumeration value="SAFT_RESPONSEWS"/>
+<xs:enumeration value="DATA_RESPONSE"/>
+<xs:enumeration value="CERTIFICATE"/>
+<xs:enumeration value="CERTIFICATEVER"/>
+<xs:enumeration value="FECSITBOR"/>
+<xs:enumeration value="HASHINT"/>
+<xs:enumeration value="SOURCEENCODING"/>
+<xs:enumeration value="HASHDOC"/>
+<xs:enumeration value="CONTENTENCODING"/>
+<xs:enumeration value="SERIALNUMBER"/>
+<xs:enumeration value="PASO_VOLUMEN"/>
+<xs:enumeration value="COMPARA_VOLUMEN"/>
+<xs:enumeration value="REF_ST"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="tAuxType">
+<xs:restriction base="xs:string">
+<xs:enumeration value="DOC"/>
+<xs:enumeration value="INT"/>
+<xs:enumeration value="UNKNOWN"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:schema>
+</grammars><resources base="https://webpre.sedeb2b.com/EdiwinES/services/mobile"><resource path="/"><resource path="bulkImport"><method name="POST"><request><param name="document" style="query"/></request><response><representation mediaType="application/json"/></response></method><method name="POST"><request><param name="interchange" style="query"/></request><response><representation mediaType="application/json"/></response></method></resource><resource path="bulkImportFile"><method name="POST"><request><representation mediaType="application/octet-stream"/></request><response><representation mediaType="application/json"/></response></method></resource><resource path="changeSituation"><method name="GET"><request><param name="filter" style="query"/></request><response><representation mediaType="application/json"/></response></method></resource><resource path="checkStatus"><method name="GET"><request></request><response><representation mediaType="application/octet-stream"><param name="result" style="plain" type="xs:boolean"/></representation></response></method></resource><resource path="commAcknowledgement"><method name="POST"><request><representation mediaType="application/octet-stream"/></request><response><representation mediaType="application/json"/></response></method></resource><resource path="commImport"><method name="POST"><request><representation mediaType="application/octet-stream"/></request><response><representation mediaType="application/json"/></response></method></resource><resource path="commSend"><method name="POST"><request><param name="interchange" style="query"/></request><response><representation mediaType="application/json"/></response></method></resource><resource path="connect"><method name="GET"><request></request><response><representation mediaType="application/json"/></response></method></resource><resource path="createSecuirtyToken"><method name="GET"><request></request><response><representation mediaType="application/octet-stream"><param name="result" style="plain" type="xs:string"/></representation></response></method></resource><resource path="deleteDocuments"><method name="GET"><request><param name="documents" style="query" repeating="true" type="xs:int"/></request><response><representation mediaType="application/json"/></response></method></resource><resource path="deposit"><method name="GET"><request><param name="filter" style="query"/></request><response><representation mediaType="application/json"/></response></method></resource><resource path="documentModify"><method name="GET"><request><param name="mapProfile" style="query"/><param name="ediwinConfig" style="query"/></request><response><representation mediaType="application/json"/></response></method></resource><resource path="duplicate"><method name="GET"><request><param name="filter" style="query"/></request><response><representation mediaType="application/json"/></response></method></resource><resource path="ediwinExport"><method name="GET"><request><param name="filter" style="query"/></request><response><representation mediaType="application/json"/></response></method></resource><resource path="ediwinImport"><method name="POST"><request><representation mediaType="application/octet-stream"/></request><response><representation mediaType="application/json"/></response></method></resource><resource path="endClientSignature"><method name="GET"><request></request><response><representation mediaType="application/json"/></response></method></resource><resource path="endSession"><method name="GET"><response status="204"></response></method></resource><resource path="getConfigDomain"><method name="GET"><request></request><response><representation mediaType="application/json"/></response></method></resource><resource path="getContent"><method name="GET"><request><param name="filter" style="query"/></request><response><representation mediaType="application/zip"/><representation mediaType="application/pdf"/></response></method></resource><resource path="getCounterFolder"><method name="GET"><request><param name="filter" style="query"/></request><response><representation mediaType="application/json"><param name="result" style="plain" type="xs:int"/></representation></response></method></resource><resource path="getDocuments"><method name="GET"><request><param name="filter" style="query"/></request><response><representation mediaType="application/json"/></response></method></resource><resource path="getFolders"><method name="GET"><request></request><response><representation mediaType="application/json"/></response></method></resource><resource path="getReport"><method name="GET"><request></request><response><representation mediaType="application/zip"/><representation mediaType="application/pdf"/></response></method></resource><resource path="getSessionInfo"><method name="GET"><request></request><response><representation mediaType="application/json"/></response></method></resource><resource path="getUser"><method name="GET"><request></request><response><representation mediaType="application/json"/></response></method></resource><resource path="prepareParams"><method name="GET"><request></request><response><representation mediaType="application/octet-stream"><param name="result" style="plain" type="xs:string"/></representation></response></method></resource><resource path="print"><method name="GET"><request><param name="reports" style="query" repeating="true"/></request><response><representation mediaType="application/json"/></response></method></resource><resource path="registerSession"><method name="GET"><request><param name="group" style="query" type="xs:string"/><param name="domain" style="query" type="xs:string"/><param name="user" style="query" type="xs:string"/><param name="password" style="query" type="xs:string"/><param name="ediwinini" style="query" type="xs:string"/></request><response><representation mediaType="application/json"/></response></method></resource><resource path="runAsynctask"><method name="GET"><request><representation mediaType="application/json"/></request><response><representation mediaType="application/json"/></response></method></resource><resource path="runComplement"><method name="POST"><request><representation mediaType="application/json"/></request><response><representation mediaType="application/json"/></response></method></resource><resource path="saveOrUpdateConfigDomain"><method name="POST"><request><param name="options" style="query"/></request><response><representation mediaType="application/json"/></response></method></resource><resource path="saveUser"><method name="GET"><request><param name="user" style="query"/></request><response><representation mediaType="application/json"><param name="result" style="plain" type="xs:boolean"/></representation></response></method></resource><resource path="sendToVolume"><method name="GET"><request><param name="documents" style="query" repeating="true" type="xs:int"/></request><response><representation mediaType="application/json"/></response></method></resource><resource path="startClientSignature"><method name="POST"><request><representation mediaType="multipart/form-data"/><representation mediaType="multipart/form-data"/></request><response><representation mediaType="application/json"><param name="result" style="plain" type="xs:string"/></representation></response></method></resource><resource path="transform"><method name="POST"><request><representation mediaType="application/octet-stream"/></request><response><representation mediaType="application/json"/></response></method></resource><resource path="translate"><method name="GET"><request><param name="filter" style="query"/></request><response><representation mediaType="application/json"/></response></method></resource><resource path="validate"><method name="GET"><request><param name="filter" style="query"/></request><response><representation mediaType="application/json"/></response></method></resource></resource></resources></application>
